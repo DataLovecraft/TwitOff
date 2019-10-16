@@ -6,16 +6,27 @@ from flask_sqlalchemy import SQLAlchemy
 
 DB = SQLAlchemy()
 
-class user(DB.Model):
+class User(DB.Model):
     '''
-    Twitter users the we pull and analyze
+    Twitter users that we pull and analyze
     '''
-    id = DB.Column(DB.Integer, primary_key=True)
+    id = DB.Column(DB.BigInteger, primary_key=True)
     name = DB.Column(DB.String(15), nullable=False)
 
-class tweet(DB.Model):
+    newest_tweet_id = DB.Column(DB.BigInteger)
+
+    def __repr__(self):
+        return '<user {}>'.format(self.name)
+
+class Tweet(DB.Model):
     '''
     Tweets
     '''
-    id = DB.Column(DB.Integer, primary_key=True)
-    text = DB.Column(DB.Unicode(280))
+    id = DB.Column(DB.BigInteger, primary_key=True)
+    text = DB.Column(DB.Unicode(300))
+    embedding = DB.Column(DB.PickleType, nullable=False)
+    user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'), nullable=False)
+    user = DB.relationship('user', backref=DB.backref('tweets', lazy=True))
+
+    def __repr__(self):
+        return '<Tweet {}>'.format(self.text)
