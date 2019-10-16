@@ -20,6 +20,11 @@ requests = ">=2.20.0"
 PDPbox = "==0.2.0"
 flask = "*"
 flask-sqlalchemy = "*"
+decouple = "*"
+python-decouple = "*"
+tweepy = "*"
+basilica = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.6"
