@@ -2,7 +2,5 @@
 
 ## Monday
 
- - create a pipenv or conda env
-   pipenv install Flask Flask-SQLAlchemy Flask-Migrate
-
-   
+ - Create a pipenv or conda env
+ - Install Flask Flask-SQLAlchemy Flask-Migrate
